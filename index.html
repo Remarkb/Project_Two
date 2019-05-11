@@ -22,7 +22,7 @@
       <div class="col-md-2">
         <div class="well">
           <h5>SELECT Indicator Category:</h5>
-          <select id="selIndCat" onchange="optionChanged(this.value)">
+          <select id="selIndCat">
             <option value="Test"></option>
             <option value="Test1">Behavioral Health/Substance Abuse</option>
             <option value="Test2">Cancer</option>
@@ -39,22 +39,43 @@
             <option value="Test">Social and Economic Factors
             </option>
           </select>
-          <h5 style="display:none;" >SELECT Indicator:</h5>
-          <select style="display:none;" id="selInd" onchange="optionChanged(this.value)"></select>
-          <h5 style="display:none;" >SELECT Year:</h5>
-          <select style="display:none;"  id="selYear" onchange="optionChanged(this.value)"></select>
-          <h5 style="display:none;" >SELECT Sex:</h5>
-          <select style="display:none;"  id="selSex" onchange="optionChanged(this.value)"></select>
-          <h5 style="display:none;" >SELECT Race/Ethnicity:</h5>
-          <select style="display:none;"  id="selRaceEth" onchange="optionChanged(this.value)"></select>
-          <h5 style="display:none;" >SELECT Location:</h5>
-          <select style="display:none;"  id="selLoc" onchange="optionChanged(this.value)"></select>
+          <h5 style="display:none;" id="hInd">SELECT Indicator:</h5>
+          <select style="display:none;" id="selInd">
+            <option value="Test"></option>
+            <option value="Test1">A</option>
+          </select>
+          <h5 style="display:none;" id="hYear">SELECT Year:</h5>
+          <select style="display:none;"  id="selYear">
+            <option value="Test"></option>
+            <option value="Test1">B</option>
+          </select>
+          <h5 style="display:none;" id="hSex">SELECT Sex:</h5>
+          <select style="display:none;"  id="selSex">
+            <option value="Test"></option>
+            <option value="Test1">C</option>
+          </select>
+          <h5 style="display:none;" id="hRaceEth">SELECT Race/Ethnicity:</h5>
+          <select style="display:none;"  id="selRaceEth">
+            <option value="Test"></option>
+            <option value="Test1">D</option>
+          </select>
+          <h5 style="display:none;" id="hLoc">SELECT Location:</h5>
+          <select style="display:none;"  id="selLoc">
+            <option value="Test"></option>
+            <option value="Test1">E</option>
+          </select>
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Sample MetaData</h3>
+            <h3 class="panel-title">Chart Type</h3>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
+          <div id="sample-metadata" class="panel-body">
+            <h5 style="display:none;" id="hChartType">SELECT ChartType:</h5>
+            <select style="display:none;" id="selChartType">
+              <option value="Test"></option>
+              <option value="Test1">Pie</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="col-md-5">
