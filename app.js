@@ -19,10 +19,8 @@ var chartGroup = svg.append("g")
 
 // Import data from an external CSV file
 d3.csv("BCHI-dataset_2019-03-04.csv", function(hc_data) {
-  // if (error) throw error;
 
   console.log(hc_data);
-  // console.log([hc_data]);
 
   // Format the data
   hc_data.forEach(function(data) {
@@ -31,13 +29,14 @@ d3.csv("BCHI-dataset_2019-03-04.csv", function(hc_data) {
   });
 });
 
-// Getting a reference to the different dropdowns
+// Getting a reference to the different dropdowns & buttons
 var dd_IndCat = d3.select("#selIndCat");
 var dd_Ind = d3.select("#selInd");
 var dd_Year = d3.select("#selYear");
 var dd_Sex = d3.select("#selSex");
 var dd_RaceEth = d3.select("#selRaceEth");
 var dd_IndLoc = d3.select("#selLoc");
+var btn_Submit = d3.select("#btn_Submit");
 
 // Unide indicator section
 dd_IndCat.on("change", function() {
@@ -70,7 +69,7 @@ dd_RaceEth.on("change", function() {
 });
 
 // Unide Chart Type section
-dd_RaceEth.on("change", function() {
+btn_Submit.on("click", function() {
   document.getElementById("hChartType").style.display = "block";
   document.getElementById("selChartType").style.display = "block";
 });
