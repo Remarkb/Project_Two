@@ -22,7 +22,23 @@
       <div class="col-md-2">
         <div class="well">
           <h5>SELECT Indicator Category:</h5>
-          <select id="selIndCat" onchange="optionChanged(this.value)"></select>
+          <select id="selIndCat" onchange="optionChanged(this.value)">
+            <option value="Test"></option>
+            <option value="Test1">Behavioral Health/Substance Abuse</option>
+            <option value="Test2">Cancer</option>
+            <option value="Test">Chronic Disease</option>
+            <option value="Test">Demographics</option>
+            <option value="Test">Environment</option>
+            <option value="Test">Food Safety</option>
+            <option value="Test">HIV/AIDS</option>
+            <option value="Test">Infectious Disease</option>
+            <option value="Test">Injury/Violence</option>
+            <option value="Test">Life Expectancy and Death Rate (Overall)</option>
+            <option value="Test">Maternal and Child Health</option>
+            <option value="Test">Sexually Transmitted Infections</option>
+            <option value="Test">Social and Economic Factors
+            </option>
+          </select>
           <h5>SELECT Indicator:</h5>
           <select id="selInd" onchange="optionChanged(this.value)"></select>
           <h5>SELECT Year:</h5>
@@ -60,5 +76,4 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="app.js"></script>
 </body>
-
 </html>
