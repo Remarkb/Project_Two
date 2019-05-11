@@ -18,11 +18,11 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import data from an external CSV file
-d3.csv("BCHI-dataset_2019-03-04.csv", function(error, hc_data) {
-  if (error) throw error;
+d3.csv("BCHI-dataset_2019-03-04.csv", function(hc_data) {
+  // if (error) throw error;
 
   console.log(hc_data);
-  console.log([hc_data]);
+  // console.log([hc_data]);
 
   // Format the data
   hc_data.forEach(function(data) {
