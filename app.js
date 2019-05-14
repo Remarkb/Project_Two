@@ -17,18 +17,6 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-// Import data from an external CSV file
-d3.csv("BCHI-dataset_2019-03-04.csv", function(hc_data) {
-
-  console.log(hc_data);
-
-  // Format the data
-  hc_data.forEach(function(data) {
-    data.Year = +data.Year;
-    data.Value = +data.Value;
-  });
-});
-
 // Getting a reference to the different dropdowns & buttons
 var dd_IndCat = d3.select("#selIndCat");
 var dd_Ind = d3.select("#selInd");

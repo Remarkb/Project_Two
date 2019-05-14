@@ -16,13 +16,13 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-conn=MySQLdb.connect(host='localhost',user='root',passwd='PASSWORD')
-cursor = conn.cursor()
-cursor.execute('use bchi_db')
-cursor.execute('select * from bchi_data')
-cursor.fetchall()
+# conn=MySQLdb.connect(host='localhost',user='root',passwd='PASSWORD')
+# cursor = conn.cursor()
+# cursor.execute('use bchi_db')
+# cursor.execute('select * from bchi_data')
+# cursor.fetchall()
 
-app.config["SQLALCHEMY_DATABASE_URI"] = ""
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:PASSWORD@localhost/bchi_db"
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -33,7 +33,6 @@ Base.prepare(db.engine, reflect=True)
 # Save references to each table
 Samples_Metadata = Base.classes.sample_metadata
 Samples = Base.classes.samples
-
 
 @app.route("/")
 def index():
