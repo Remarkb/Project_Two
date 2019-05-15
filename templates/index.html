@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Big Cities Health Coalition</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body background="static/background.jpg"></body>>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Big Cities Health Coalition</h1>
+        <p>Use the dropdown selections on the left to visualize your desired data</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well">
+          <h5>SELECT Indicator Category:</h5>
+          <select id="selIndCat">
+            <option value="Test"></option>
+            <option value="Test1">Behavioral Health/Substance Abuse</option>
+            <option value="Test2">Cancer</option>
+            <option value="Test">Chronic Disease</option>
+            <option value="Test">Demographics</option>
+            <option value="Test">Environment</option>
+            <option value="Test">Food Safety</option>
+            <option value="Test">HIV/AIDS</option>
+            <option value="Test">Infectious Disease</option>
+            <option value="Test">Injury/Violence</option>
+            <option value="Test">Life Expectancy and Death Rate (Overall)</option>
+            <option value="Test">Maternal and Child Health</option>
+            <option value="Test">Sexually Transmitted Infections</option>
+            <option value="Test">Social and Economic Factors
+            </option>
+          </select>
+          <h5 style="display:none;" id="hInd">SELECT Indicator:</h5>
+          <select style="display:none;" id="selInd">
+            <option value="Test"></option>
+            <option value="Test1">A</option>
+          </select>
+          <h5 style="display:none;" id="hYear">SELECT Year:</h5>
+          <select style="display:none;"  id="selYear">
+            <option value="Test"></option>
+            <option value="Test1">B</option>
+          </select>
+          <h5 style="display:none;" id="hSex">SELECT Sex:</h5>
+          <select style="display:none;"  id="selSex">
+            <option value="Test"></option>
+            <option value="Test1">C</option>
+          </select>
+          <h5 style="display:none;" id="hRaceEth">SELECT Race/Ethnicity:</h5>
+          <select style="display:none;"  id="selRaceEth">
+            <option value="Test"></option>
+            <option value="Test1">D</option>
+          </select>
+          <h5 style="display:none;" id="hLoc">SELECT Location:</h5>
+          <select style="display:none;"  id="selLoc">
+            <option value="Test"></option>
+            <option value="Test1">E</option>
+          </select>
+          <button id="btn_Submit">Submit</button>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Chart Type</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body">
+            <h5 style="display:none;" id="hChartType">SELECT ChartType:</h5>
+            <select style="display:none;" id="selChartType">
+              <option value="Test"></option>
+              <option value="Test1">Pie</option>
+              <option value="Test1">Bar</option>
+              <option value="Test1">Line</option>
+              <option value="Test1">Scatter</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="pie"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="bubble"></div>
+    </div>
+  </div>
+
+  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+</html>

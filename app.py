@@ -26,7 +26,7 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-# bchi_data = Base.classes.bchi_data
+bchi_data = Base.classes.bchi_data
 print(f'tables: {Base.classes.keys()}')
 
 @app.route("/")
@@ -34,16 +34,16 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-@app.route("/names")
-def names():
-    """return select * from bchi_data."""
+# @app.route("/names")
+# def names():
+#     """return select * from bchi_data."""
 
-    # Use Pandas to perform the sql query
-    stmt = db.session.query(bchi_data).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
+#     # Use Pandas to perform the sql query
+#     stmt = db.session.query(bchi_data).statement
+#     df = pd.read_sql_query(stmt, db.session.bind)
 
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
+#     # Return a list of the column names (sample names)
+#     return jsonify(list(df.columns)[2:])
 
 if __name__ == "__main__":
     app.run()
