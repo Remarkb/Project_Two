@@ -17,12 +17,6 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-# conn=MySQLdb.connect(host='localhost',user='root',passwd='PASSWORD')
-# cursor = conn.cursor()
-# cursor.execute('use bchi_db')
-# cursor.execute('select * from bchi_data')
-# cursor.fetchall()
-
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:" + config.password + "@localhost/bchi_db"
 db = SQLAlchemy(app)
 
@@ -32,24 +26,24 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
+# bchi_data = Base.classes.bchi_data
+print(f'tables: {Base.classes.keys()}')
 
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
-# @app.route("/names")
-# def names():
-#     """Return a list of sample names."""
+@app.route("/names")
+def names():
+    """return select * from bchi_data."""
 
-#     # Use Pandas to perform the sql query
-#     stmt = db.session.query(Samples).statement
-#     df = pd.read_sql_query(stmt, db.session.bind)
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(bchi_data).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
 
-#     # Return a list of the column names (sample names)
-#     return jsonify(list(df.columns)[2:])
+    # Return a list of the column names (sample names)
+    return jsonify(list(df.columns)[2:])
 
 if __name__ == "__main__":
     app.run()
