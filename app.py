@@ -26,29 +26,14 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-
 @app.route("/sel_ind")
 def names():
     # data = engine.execute("SELECT * FROM bchi_data")
-    data = pd.read_sql("SELECT indicator FROM bchi_data", conn)
-    # dl_Ind = []
-    # for record in data:
-    #     dl_Ind.append(record)
+    data = pd.read_sql("select distinct Indicator from bchi_data", conn)
     dl_Ind = data["Indicator"].unique()
     ind_list = dl_Ind.tolist()
-    # print(ind_list)
+    print(ind_list)
     return jsonify(ind_list)
-    # print(dl_Ind)
-    # return jsonify(dl_Ind)
-
-@app.route('/route')
-def route():
-    response = app.response_class(
-        response=json.dumps('test'),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
 
 if __name__ == "__main__":
     app.run()
