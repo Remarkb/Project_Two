@@ -27,7 +27,7 @@ def index():
     return render_template("index.html")
 
 @app.route("/sel_ind/<ind_cat_text>")
-def ind_cat_dd(ind_cat_text):
+def ind_dd(ind_cat_text):
     # pull back all indicators that are in corrisponding category
     data = pd.read_sql(f"select distinct Indicator from bchi_data where Category like '{ind_cat_text}'", conn)
     dl_Ind = data["Indicator"].unique()
@@ -35,7 +35,7 @@ def ind_cat_dd(ind_cat_text):
     return jsonify(ind_list)
 
 @app.route("/sel_year/<ind_cat_text>/<ind_text>")
-def ind_dd(ind_cat_text, ind_text):
+def year_dd(ind_cat_text, ind_text):
     #pull back all years in corrisponding category/indicator
     data = pd.read_sql(f"select distinct Year from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}'", conn)
     dl_Ind = data["Year"].unique()
@@ -43,10 +43,26 @@ def ind_dd(ind_cat_text, ind_text):
     return jsonify(ind_list)
 
 @app.route("/sel_sex/<ind_cat_text>/<ind_text>/<year_text>")
-def year_dd(ind_cat_text, ind_text, year_text):
+def sex_dd(ind_cat_text, ind_text, year_text):
     #pull back all genders in corrisponding category/indicator/year
     data = pd.read_sql(f"select distinct Sex from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}'", conn)
     dl_Ind = data["Sex"].unique()
+    ind_list = dl_Ind.tolist()
+    return jsonify(ind_list)
+
+@app.route("/sel_race/<ind_cat_text>/<ind_text>/<year_text>/<sex_text>")
+def race_dd(ind_cat_text, ind_text, year_text, sex_text):
+    #pull back all races in corrisponding category/indicator/year/sex
+    data = pd.read_sql(f"select distinct Race from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}'", conn)
+    dl_Ind = data["Race"].unique()
+    ind_list = dl_Ind.tolist()
+    return jsonify(ind_list)
+
+@app.route("/sel_loc/<ind_cat_text>/<ind_text>/<year_text>/<sex_text>/<race_text>")
+def loc_dd(ind_cat_text, ind_text, year_text, sex_text, race_text):
+    #pull back all locations in corrisponding category/indicator/year/sex/race
+    data = pd.read_sql(f"select distinct Location from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}' and Race like '{race_text}'", conn)
+    dl_Ind = data["Location"].unique()
     ind_list = dl_Ind.tolist()
     return jsonify(ind_list)
 
