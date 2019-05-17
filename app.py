@@ -26,13 +26,28 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-@app.route("/sel_ind")
-def names():
-    # data = engine.execute("SELECT * FROM bchi_data")
-    data = pd.read_sql("select distinct Indicator from bchi_data", conn)
+@app.route("/sel_ind/<ind_cat_text>")
+def ind_cat_dd(ind_cat_text):
+    # pull back all indicators that are in corrisponding category
+    data = pd.read_sql(f"select distinct Indicator from bchi_data where Category like '{ind_cat_text}'", conn)
     dl_Ind = data["Indicator"].unique()
     ind_list = dl_Ind.tolist()
-    print(ind_list)
+    return jsonify(ind_list)
+
+@app.route("/sel_year/<ind_cat_text>/<ind_text>")
+def ind_dd(ind_cat_text, ind_text):
+    #pull back all years in corrisponding category/indicator
+    data = pd.read_sql(f"select distinct Year from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}'", conn)
+    dl_Ind = data["Year"].unique()
+    ind_list = dl_Ind.tolist()
+    return jsonify(ind_list)
+
+@app.route("/sel_sex/<ind_cat_text>/<ind_text>/<year_text>")
+def year_dd(ind_cat_text, ind_text, year_text):
+    #pull back all genders in corrisponding category/indicator/year
+    data = pd.read_sql(f"select distinct Sex from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}'", conn)
+    dl_Ind = data["Sex"].unique()
+    ind_list = dl_Ind.tolist()
     return jsonify(ind_list)
 
 if __name__ == "__main__":
