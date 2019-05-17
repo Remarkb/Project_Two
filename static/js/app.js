@@ -30,6 +30,10 @@ var btn_Submit = d3.select("#btn_Submit");
 dd_IndCat.on("change", function() {
   document.getElementById("hInd").style.display = "block";
   document.getElementById("selInd").style.display = "block";
+  d3.json("/sel_ind").then(function(data) {
+    console.log(data);
+    // console.log("test")
+  });
 });
 
 // Unide Year section
@@ -61,3 +65,11 @@ btn_Submit.on("click", function() {
   document.getElementById("hChartType").style.display = "block";
   document.getElementById("selChartType").style.display = "block";
 });
+
+function buildMetadata() {
+    // Use `d3.json` to fetch the data
+  d3.json("/sel_ind").then(function(data) {
+    console.log(data);
+    console.log("test")
+  });
+};

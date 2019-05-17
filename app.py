@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask import json
 
 app = Flask(__name__)
 
@@ -34,16 +35,29 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-# @app.route("/names")
-# def names():
-#     """return select * from bchi_data."""
 
-#     # Use Pandas to perform the sql query
-#     stmt = db.session.query(bchi_data).statement
-#     df = pd.read_sql_query(stmt, db.session.bind)
+@app.route("/sel_ind")
+def names():
+    """return select * from bchi_data."""
 
-#     # Return a list of the column names (sample names)
-#     return jsonify(list(df.columns)[2:])
+    # Use Pandas to perform the sql query
+    # stmt = db.session.query(bchi_data).statement
+    # df = pd.read_sql_query(stmt, db.session.bind)
+
+    # Return a list of the column names (sample names)
+    # return jsonify(list(df.columns)[2:])
+    return jsonify('test')
+    # return ('test')
+
+
+@app.route('/route')
+def route():
+    response = app.response_class(
+        response=json.dumps('test'),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 if __name__ == "__main__":
     app.run()
