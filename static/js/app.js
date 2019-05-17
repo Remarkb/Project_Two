@@ -32,7 +32,6 @@ dd_IndCat.on("change", function() {
   document.getElementById("selInd").style.display = "block";
   d3.json("/sel_ind").then(function(data) {
     console.log(data);
-    // console.log("test")
   });
 });
 

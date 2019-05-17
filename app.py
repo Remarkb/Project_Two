@@ -18,17 +18,8 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:" + config.password + "@localhost/bchi_db"
-db = SQLAlchemy(app)
-
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(db.engine, reflect=True)
-
-# Save references to each table
-bchi_data = Base.classes.bchi_data
-print(f'tables: {Base.classes.keys()}')
+engine = create_engine("mysql://root:" + config.password + "@localhost/bchi_db")
+conn = engine.connect()
 
 @app.route("/")
 def index():
@@ -38,17 +29,17 @@ def index():
 
 @app.route("/sel_ind")
 def names():
-    """return select * from bchi_data."""
-
-    # Use Pandas to perform the sql query
-    # stmt = db.session.query(bchi_data).statement
-    # df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Return a list of the column names (sample names)
-    # return jsonify(list(df.columns)[2:])
-    return jsonify('test')
-    # return ('test')
-
+    # data = engine.execute("SELECT * FROM bchi_data")
+    data = pd.read_sql("SELECT indicator FROM bchi_data", conn)
+    # dl_Ind = []
+    # for record in data:
+    #     dl_Ind.append(record)
+    dl_Ind = data["Indicator"].unique()
+    ind_list = dl_Ind.tolist()
+    # print(ind_list)
+    return jsonify(ind_list)
+    # print(dl_Ind)
+    # return jsonify(dl_Ind)
 
 @app.route('/route')
 def route():
