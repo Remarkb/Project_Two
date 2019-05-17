@@ -34,9 +34,9 @@ dd_IndCat.on("change", function() {
   document.getElementById("selInd").style.display = "block";
   var dd_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_elm.options[dd_elm.selectedIndex].text;
-  dd_Ind.html("")
-  dd_Ind.append("option").text("")
-  dd_Ind.append("option").text("All")
+  dd_Ind.html("");
+  dd_Ind.append("option").text("");
+  dd_Ind.append("option").text("All");
   d3.json(`/sel_ind/${ind_cat_text}`).then((data) => {
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -55,9 +55,9 @@ dd_Ind.on("change", function() {
   var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
   if(ind_text == 'All') {
     ind_text = '%%';}
-  dd_Year.html("")
-  dd_Year.append("option").text("")
-  dd_Year.append("option").text("All")
+  dd_Year.html("");
+  dd_Year.append("option").text("");
+  dd_Year.append("option").text("All");
   d3.json(`/sel_year/${ind_cat_text}/${ind_text}`).then((data) => {
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -80,9 +80,9 @@ dd_Year.on("change", function() {
     ind_text = '%%';}
   if(year_text == 'All') {
     year_text = '%%';}
-  dd_Sex.html("")
-  dd_Sex.append("option").text("")
-  dd_Sex.append("option").text("All")
+  dd_Sex.html("");
+  dd_Sex.append("option").text("");
+  dd_Sex.append("option").text("All");
   d3.json(`/sel_sex/${ind_cat_text}/${ind_text}/${year_text}`).then((data) => {
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -109,9 +109,8 @@ dd_Sex.on("change", function() {
     year_text = '%%';}
   if(sex_text == 'All') {
     sex_text = '%%';}
-  dd_Race.html("")
-  dd_Race.append("option").text("")
-  dd_Race.append("option").text("All")
+  dd_Race.html("");
+  dd_Race.append("option").text("");
   d3.json(`/sel_race/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}`).then((data) => {
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -142,9 +141,9 @@ dd_Race.on("change", function() {
     sex_text = '%%';}
   if(race_text == 'All') {
     race_text = '%%';}
-  dd_Loc.html("")
-  dd_Loc.append("option").text("")
-  dd_Loc.append("option").text("All")
+  dd_Loc.html("");
+  dd_Loc.append("option").text("");
+  dd_Loc.append("option").text("All");
   d3.json(`/sel_loc/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}`).then((data) => {
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
