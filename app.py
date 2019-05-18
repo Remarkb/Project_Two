@@ -66,5 +66,14 @@ def loc_dd(ind_cat_text, ind_text, year_text, sex_text, race_text):
     ind_list = dl_Ind.tolist()
     return jsonify(ind_list)
 
+@app.route("/sel_pie/<ind_cat_text>/<ind_text>/<year_text>/<sex_text>/<race_text>/<loc_text>/<data_text>")
+def pie_data(ind_cat_text, ind_text, year_text, sex_text, race_text, loc_text, data_text):
+    #pull back all locations in corrisponding category/indicator/year/sex/race
+    data = pd.read_sql(f"select {data_text}, Value from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}' and Race like '{race_text}' and Location like '{loc_text}'", conn)
+    # dl_axis = data[f"{data_text}"].unique()
+    dl_value = data["Value"]
+    ind_list = dl_value.tolist()
+    return jsonify(ind_list)
+
 if __name__ == "__main__":
     app.run()

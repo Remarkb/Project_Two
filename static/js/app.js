@@ -166,7 +166,6 @@ btn_Clear.on("click", function() {
   dd_Sex.html("");
   dd_Race.html("");
   dd_Loc.html("");
-  dd_Chart.html("");
   dd_PieComp.html("");
   document.getElementById("hInd").style.display = "none";
   document.getElementById("selInd").style.display = "none";  
@@ -217,6 +216,42 @@ dd_Chart.on("change", function() {
     dd_PieComp.append("option").text("Race/Ethnicity");
     dd_PieComp.append("option").text("Location");
   }else if (ind_chart_text == 'Scatter') {
-  
   }
+});
+
+// Pull data once selections are finalized
+dd_PieComp.on("change", function() {
+  var dd_cat_elm = document.getElementById("selIndCat");
+  var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
+  var dd_ind_elm = document.getElementById("selInd");
+  var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+  var dd_year_elm = document.getElementById("selYear");
+  var year_text = dd_year_elm.options[dd_year_elm.selectedIndex].text;
+  var dd_sex_elm = document.getElementById("selSex");
+  var sex_text = dd_sex_elm.options[dd_sex_elm.selectedIndex].text;
+  var dd_race_elm = document.getElementById("selRaceEth");
+  var race_text = dd_race_elm.options[dd_race_elm.selectedIndex].text;
+  var dd_loc_elm = document.getElementById("selLoc");
+  var loc_text = dd_loc_elm.options[dd_loc_elm.selectedIndex].text;
+  var dd_chart_elm = document.getElementById("selChartType");
+  var ind_chart_text = dd_chart_elm.options[dd_chart_elm.selectedIndex].text;  
+  var dd_data_elm = document.getElementById("selPieComp");
+  var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
+
+  if(ind_text == 'All') {
+    ind_text = '%%';}
+  if(year_text == 'All') {
+    year_text = '%%';}
+  if(sex_text == 'All') {
+    sex_text = '%%';}
+  if(race_text == 'All') {
+    race_text = '%%';}  
+  if(loc_text == 'All') {
+    loc_text = '%%';}
+  d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
+    var arrayLength = data.length;
+    for (var i = 0; i < arrayLength; i++) {
+      console.log(data[i]);
+    }
+    });
 });
