@@ -261,11 +261,11 @@ dd_PieComp.on("change", function() {
     var string_num = un_zip[1];
     console.log(string_num)
     var x = string_num.map(v => +v );
-    if(data_text == 'Pie') {
+    if(ind_chart_text == 'Pie') {
       create_pie_chart(x,y);
-    } else if (data_text == 'Bar') {
+    } else if (ind_chart_text == 'Bar') {
       create_bar_chart(x,y);
-    } else if (data_text == 'Line') {
+    } else if (ind_chart_text == 'Line') {
       create_line_chart(x,y);
     } else {
       create_scatter_chart(x,y);
@@ -291,44 +291,34 @@ function create_pie_chart(x,y) {
   }
 
   function create_bar_chart(x,y) {
-    var trace1 = {
-      labels: y,
-      values: x,
-      type: 'pie',
-    };
+    var data = [
+      {
+        x: y,
+        y: x,
+        type: 'bar'
+      }
+    ];
     
-    var data_pnt = [trace1];
-    
-    var layout = {
-      size: "auto",
-      showlegend: true
-    };
-    
-    Plotly.newPlot("pie", data_pnt, layout);
+    Plotly.newPlot('pie', data);
  }
 
  function create_line_chart(x,y) {
   var trace1 = {
-    labels: y,
-    values: x,
-    type: 'pie',
+    x: y,
+    y: x,
+    type: 'scatter'
   };
   
-  var data_pnt = [trace1];
+  var data = [trace1];
   
-  var layout = {
-    size: "auto",
-    showlegend: true
-  };
-  
-  Plotly.newPlot("pie", data_pnt, layout);
+  Plotly.newPlot('pie', data);
 }
 
 function create_scatter_chart(x,y) {
   var trace1 = {
     labels: y,
     values: x,
-    type: 'pie',
+    type: 'scatter',
   };
   
   var data_pnt = [trace1];
