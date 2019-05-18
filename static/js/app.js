@@ -256,9 +256,8 @@ dd_PieComp.on("change", function() {
   if(loc_text == 'All') {
     loc_text = '%%';}
   d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
-    var arrayLength = data.length;
-    for (var i = 0; i < arrayLength; i++) {
-      console.log(data[i]);
-    }
+    var un_zip = _.unzip(data);
+    var y = un_zip[0];
+    var x = un_zip[1];
     });
 });
