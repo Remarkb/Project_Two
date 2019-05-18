@@ -27,8 +27,9 @@ var dd_Loc = d3.select("#selLoc");
 var dd_Chart = d3.select("#selChartType");
 var btn_Submit = d3.select("#btn_Submit");
 var btn_Clear = d3.select("#btn_Clear");
+var dd_PieComp = d3.select("#selPieComp");
 
-// Unide indicator section
+// Unhide indicator section
 dd_IndCat.on("change", function() {
   document.getElementById("hInd").style.display = "block";
   document.getElementById("selInd").style.display = "block";
@@ -45,7 +46,7 @@ dd_IndCat.on("change", function() {
     });
   });
 
-// Unide Year section
+// Unhide Year section
 dd_Ind.on("change", function() {
   document.getElementById("hYear").style.display = "block";
   document.getElementById("selYear").style.display = "block";
@@ -66,7 +67,7 @@ dd_Ind.on("change", function() {
     });
 });
 
-// Unide Sex section
+// Unhide Sex section
 dd_Year.on("change", function() {
   document.getElementById("hSex").style.display = "block";
   document.getElementById("selSex").style.display = "block";
@@ -91,7 +92,7 @@ dd_Year.on("change", function() {
     });
 });
 
-// Unide Race/Eth section
+// Unhide Race/Eth section
 dd_Sex.on("change", function() {
   document.getElementById("hRaceEth").style.display = "block";
   document.getElementById("selRaceEth").style.display = "block";
@@ -119,7 +120,7 @@ dd_Sex.on("change", function() {
     });
 });
 
-// Unide Location section
+// Unhide Location section
 dd_Race.on("change", function() {
   document.getElementById("hLoc").style.display = "block";
   document.getElementById("selLoc").style.display = "block";
@@ -152,7 +153,7 @@ dd_Race.on("change", function() {
     });
 });
 
-// Unide Chart Type section
+// Unhide Chart Type section
 btn_Submit.on("click", function() {
   document.getElementById("hChartType").style.display = "block";
   document.getElementById("selChartType").style.display = "block";
@@ -166,6 +167,7 @@ btn_Clear.on("click", function() {
   dd_Race.html("");
   dd_Loc.html("");
   dd_Chart.html("");
+  dd_PieComp.html("");
   document.getElementById("hInd").style.display = "none";
   document.getElementById("selInd").style.display = "none";  
   document.getElementById("hYear").style.display = "none";
@@ -177,13 +179,44 @@ btn_Clear.on("click", function() {
   document.getElementById("hLoc").style.display = "none";
   document.getElementById("selLoc").style.display = "none";
   document.getElementById("hChartType").style.display = "none";
+  document.getElementById("hPieComp").style.display = "none";
   document.getElementById("selChartType").style.display = "none";
+  document.getElementById("selPieComp").style.display = "none";
 });
 
-function buildMetadata() {
-    // Use `d3.json` to fetch the data
-  d3.json("/sel_ind").then(function(data) {
-    console.log(data);
-    console.log("test")
-  });
-};
+// Unhide Pie Chart DropDown
+dd_Chart.on("change", function() {
+  var dd_chart_elm = document.getElementById("selChartType");
+  var ind_chart_text = dd_chart_elm.options[dd_chart_elm.selectedIndex].text;  
+
+  if(ind_chart_text == 'Pie'){
+    document.getElementById("hPieComp").style.display = "block";
+    document.getElementById("selPieComp").style.display = "block";
+    dd_PieComp.append("option").text("");
+    dd_PieComp.append("option").text("Indicator");
+    dd_PieComp.append("option").text("Year");
+    dd_PieComp.append("option").text("Sex");
+    dd_PieComp.append("option").text("Race/Ethnicity");
+    dd_PieComp.append("option").text("Location");
+  } else if (ind_chart_text == 'Bar') {
+    document.getElementById("hPieComp").style.display = "block";
+    document.getElementById("selPieComp").style.display = "block";
+    dd_PieComp.append("option").text("");
+    dd_PieComp.append("option").text("Indicator");
+    dd_PieComp.append("option").text("Year");
+    dd_PieComp.append("option").text("Sex");
+    dd_PieComp.append("option").text("Race/Ethnicity");
+    dd_PieComp.append("option").text("Location");
+  }else if (ind_chart_text == 'Line') {
+    document.getElementById("hPieComp").style.display = "block";
+    document.getElementById("selPieComp").style.display = "block";
+    dd_PieComp.append("option").text("");
+    dd_PieComp.append("option").text("Indicator");
+    dd_PieComp.append("option").text("Year");
+    dd_PieComp.append("option").text("Sex");
+    dd_PieComp.append("option").text("Race/Ethnicity");
+    dd_PieComp.append("option").text("Location");
+  }else if (ind_chart_text == 'Scatter') {
+  
+  }
+});
