@@ -33,6 +33,7 @@ var dd_PieComp = d3.select("#selPieComp");
 dd_IndCat.on("change", function() {
   document.getElementById("hInd").style.display = "block";
   document.getElementById("selInd").style.display = "block";
+  document.getElementById("selInd").style.width = "300px";
   var dd_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_elm.options[dd_elm.selectedIndex].text;
   dd_Ind.html("");
@@ -50,6 +51,7 @@ dd_IndCat.on("change", function() {
 dd_Ind.on("change", function() {
   document.getElementById("hYear").style.display = "block";
   document.getElementById("selYear").style.display = "block";
+  document.getElementById("selYear").style.width = "300px";
   var dd_cat_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
@@ -71,6 +73,7 @@ dd_Ind.on("change", function() {
 dd_Year.on("change", function() {
   document.getElementById("hSex").style.display = "block";
   document.getElementById("selSex").style.display = "block";
+  document.getElementById("selSex").style.width = "300px";
   var dd_cat_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
@@ -96,6 +99,7 @@ dd_Year.on("change", function() {
 dd_Sex.on("change", function() {
   document.getElementById("hRaceEth").style.display = "block";
   document.getElementById("selRaceEth").style.display = "block";
+  document.getElementById("selRaceEth").style.width = "300px";
   var dd_cat_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
@@ -124,6 +128,7 @@ dd_Sex.on("change", function() {
 dd_Race.on("change", function() {
   document.getElementById("hLoc").style.display = "block";
   document.getElementById("selLoc").style.display = "block";
+  document.getElementById("selLoc").style.width = "300px";
   var dd_cat_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
@@ -157,6 +162,7 @@ dd_Race.on("change", function() {
 btn_Submit.on("click", function() {
   document.getElementById("hChartType").style.display = "block";
   document.getElementById("selChartType").style.display = "block";
+  document.getElementById("selChartType").style.width = "300px";
 });
 
 // Clear all dropdowns
@@ -191,6 +197,7 @@ dd_Chart.on("change", function() {
   if(ind_chart_text == 'Pie'){
     document.getElementById("hPieComp").style.display = "block";
     document.getElementById("selPieComp").style.display = "block";
+    document.getElementById("selPieComp").style.width = "300px";
     dd_PieComp.append("option").text("");
     dd_PieComp.append("option").text("Indicator");
     dd_PieComp.append("option").text("Year");
