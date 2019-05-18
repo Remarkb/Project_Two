@@ -69,7 +69,7 @@ def loc_dd(ind_cat_text, ind_text, year_text, sex_text, race_text):
 @app.route("/sel_pie/<ind_cat_text>/<ind_text>/<year_text>/<sex_text>/<race_text>/<loc_text>/<data_text>")
 def pie_data(ind_cat_text, ind_text, year_text, sex_text, race_text, loc_text, data_text):
     #pull back results for pie chart
-    data = pd.read_sql(f"select {data_text}, Value from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}' and Race like '{race_text}' and Location like '{loc_text}'", conn)
+    data = pd.read_sql(f"select {data_text}, Value from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}' and Race like '{race_text}' and Location like '{loc_text}' and Value > 0 group by {data_text}", conn)
     ind_list = data.values.tolist()
     return jsonify(ind_list)
 
