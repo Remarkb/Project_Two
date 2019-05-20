@@ -255,25 +255,51 @@ dd_PieComp.on("change", function() {
     race_text = '%%';}  
   if(loc_text == 'All') {
     loc_text = '%%';}
-  d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
-    var un_zip = _.unzip(data);
-    var y = un_zip[0];
-    var string_num = un_zip[1];
-    console.log(string_num)
-    var x = string_num.map(v => +v );
-    if(ind_chart_text == 'Pie') {
+  if(ind_chart_text == 'Pie') {
+    d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
+      var un_zip = _.unzip(data);
+      var y = un_zip[0];
+      var string_num = un_zip[1];
+      console.log(string_num)
+      var x = string_num.map(v => +v );
       create_pie_chart(x,y);
-    } else if (ind_chart_text == 'Bar') {
-      create_bar_chart(x,y);
-    } else if (ind_chart_text == 'Line') {
-      create_line_chart(x,y);
-    } else {
-      create_scatter_chart(x,y);
-    }
     });
+    } else if (ind_chart_text == 'Bar') {
+        d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
+          var un_zip = _.unzip(data);
+          var y = un_zip[0];
+          var string_num = un_zip[1];
+          console.log(string_num)
+          var x = string_num.map(v => +v );
+          create_bar_chart(x,y);
+        });
+    } else if (ind_chart_text == 'Line') {
+        d3.json(`/sel_line/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
+          var un_zip = _.unzip(data);
+          var y = un_zip[1];
+          var string_num = un_zip[2];
+          var x = string_num.map(v => +v );
+          var dp = un_zip[0];
+          create_line_chart(x,y,dp);
+        });
+    } else {
+        d3.json(`/sel_line/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
+          var un_zip = _.unzip(data);
+          var y = un_zip[1];
+          var string_num = un_zip[2];
+          var x = string_num.map(v => +v );
+          var dp = un_zip[0];
+          create_scatter_chart(x,y,dp);
+        });
+    }
 });
 
 function create_pie_chart(x,y) {
+    var dd_ind_elm = document.getElementById("selInd");
+    var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+    var dd_data_elm = document.getElementById("selPieComp");
+    var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
+
      var trace1 = {
        labels: y,
        values: x,
@@ -284,13 +310,19 @@ function create_pie_chart(x,y) {
      
      var layout = {
        size: "auto",
-       showlegend: true
+       showlegend: true,
+       title: ind_text + " by " + data_text
      };
      
      Plotly.newPlot("pie", data_pnt, layout);
   }
 
   function create_bar_chart(x,y) {
+    var dd_ind_elm = document.getElementById("selInd");
+    var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+    var dd_data_elm = document.getElementById("selPieComp");
+    var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
+
     var data = [
       {
         x: y,
@@ -298,26 +330,48 @@ function create_pie_chart(x,y) {
         type: 'bar'
       }
     ];
-    
-    Plotly.newPlot('pie', data);
+
+    var layout = {
+      size: "auto",
+      // showlegend: true,
+      title: ind_text + " by " + data_text
+    };
+
+    Plotly.newPlot('pie', data, layout);
  }
 
- function create_line_chart(x,y) {
+ function create_line_chart(x,y,dp) {
+  var dd_ind_elm = document.getElementById("selInd");
+  var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+  var dd_data_elm = document.getElementById("selPieComp");
+  var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;
+
   var trace1 = {
     x: y,
     y: x,
     type: 'scatter'
   };
+
+  var layout = {
+    size: "auto",
+    showlegend: true,
+    title: ind_text + " by " + data_text
+  };
   
   var data = [trace1];
   
-  Plotly.newPlot('pie', data);
+  Plotly.newPlot('pie', data, layout);
 }
 
-function create_scatter_chart(x,y) {
+function create_scatter_chart(x,y,dp) {
+  var dd_ind_elm = document.getElementById("selInd");
+  var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+  var dd_data_elm = document.getElementById("selPieComp");
+  var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;
+
   var trace1 = {
-    labels: y,
-    values: x,
+    x: x,
+    y: dp,
     type: 'scatter',
   };
   
@@ -325,7 +379,8 @@ function create_scatter_chart(x,y) {
   
   var layout = {
     size: "auto",
-    showlegend: true
+    showlegend: true,
+    title: ind_text + " by " + data_text
   };
   
   Plotly.newPlot("pie", data_pnt, layout);
