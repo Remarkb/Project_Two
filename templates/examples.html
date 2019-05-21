@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Big Cities Health Coalition</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+</head>
+
+<body class = "bg">
+<div class = "navbar navbar-default navbar-static-top" role = "navigation">
+    <div class = "container">
+      <div class = "navbar-header">
+        <button type="button" class = "navbar-toggle" data-toggle = "collapse" data-target = ".navbar-collapse">
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+        </button>
+        <a href = "#" class = "navbar-brand">BCHI</a>
+      </div>
+
+      <div class = "navbar-collapse collapse">
+         <ul class = "nav navbar-nav navbar-right">
+            <li><a href = "/">Home</a></li>
+            <li class = "active"><a href = "/examples">Examples</a></li>
+         </ul> 
+      </div>
+    </div>  
+</div>
+<div class="container container-fluid">
+  <div class="row">
+    <h2>Pie Chart</h2>                  
+        <img src="{{ url_for('static', filename='images/image1.jpeg') }}" class="img-responsive" id="boxshadow" alt="Pie Chart" width="640" height="360">
+  </div> 
+  <div class="row">
+    <h2>Bar Chart</h2>                  
+        <img src="{{ url_for('static', filename='images/image2.jpeg') }}" class="img-responsive" id="boxshadow" alt="Bar Chart" width="640" height="360"> 
+  </div>
+  <div class="row pb-5">
+    <h2>Scatter Chart</h2>                  
+        <img src="{{ url_for('static', filename='images/image3.jpeg') }}" class="img-responsive" id="boxshadow" alt="Scatter Chart" width="640" height="360"> 
+  </div>      
+</div>
+
+</body>
+</html>

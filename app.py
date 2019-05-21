@@ -26,6 +26,11 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/examples")
+def example():
+    """Return the examples page."""
+    return render_template("examples.html")
+
 @app.route("/sel_ind/<ind_cat_text>")
 def ind_dd(ind_cat_text):
     # pull back all indicators that are in corrisponding category
