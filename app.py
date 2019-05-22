@@ -78,5 +78,12 @@ def pie_data(ind_cat_text, ind_text, year_text, sex_text, race_text, loc_text, d
     ind_list = data.values.tolist()
     return jsonify(ind_list)
 
+@app.route("/sel_line/<ind_cat_text>/<ind_text>/<year_text>/<sex_text>/<race_text>/<loc_text>/<data_text>")
+def line_data(ind_cat_text, ind_text, year_text, sex_text, race_text, loc_text, data_text):
+    #pull back results for pie chart
+    data = pd.read_sql(f"select {data_text}, Year, Value from bchi_data where Category like '{ind_cat_text}' and Indicator like '{ind_text}' and Year like '{year_text}' and Sex like '{sex_text}' and Race like '{race_text}' and Location like '{loc_text}' and Value > 0 group by {data_text}, Year", conn)
+    ind_list = data.values.tolist()
+    return jsonify(ind_list)
+
 if __name__ == "__main__":
     app.run()
