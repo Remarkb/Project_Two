@@ -167,26 +167,7 @@ btn_Submit.on("click", function() {
 
 // Clear all dropdowns
 btn_Clear.on("click", function() {
-  dd_Ind.html("");
-  dd_Year.html("");
-  dd_Sex.html("");
-  dd_Race.html("");
-  dd_Loc.html("");
-  dd_PieComp.html("");
-  document.getElementById("hInd").style.display = "none";
-  document.getElementById("selInd").style.display = "none";  
-  document.getElementById("hYear").style.display = "none";
-  document.getElementById("selYear").style.display = "none";  
-  document.getElementById("hSex").style.display = "none";
-  document.getElementById("selSex").style.display = "none";  
-  document.getElementById("hRaceEth").style.display = "none";
-  document.getElementById("selRaceEth").style.display = "none";
-  document.getElementById("hLoc").style.display = "none";
-  document.getElementById("selLoc").style.display = "none";
-  document.getElementById("hChartType").style.display = "none";
-  document.getElementById("hPieComp").style.display = "none";
-  document.getElementById("selChartType").style.display = "none";
-  document.getElementById("selPieComp").style.display = "none";
+  window.location.reload();
 });
 
 // Unhide Pie Chart DropDown
@@ -236,6 +217,9 @@ dd_Chart.on("change", function() {
 
 // Pull data once selections are finalized
 dd_PieComp.on("change", function() {
+  var chart_area = document.getElementById("pie");
+  chart_area.html("");
+
   var dd_cat_elm = document.getElementById("selIndCat");
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
@@ -339,7 +323,8 @@ function create_pie_chart(x,y) {
       {
         x: y,
         y: x,
-        type: 'bar'
+        type: 'bar',
+        name: data_text
       }
     ];
 
