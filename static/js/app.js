@@ -172,6 +172,10 @@ btn_Clear.on("click", function() {
 
 // Unhide Pie Chart DropDown
 dd_Chart.on("change", function() {
+  var chart_area = d3.select("#pie");
+  chart_area.html("");
+  dd_PieComp.html("");
+
   var dd_chart_elm = document.getElementById("selChartType");
   var ind_chart_text = dd_chart_elm.options[dd_chart_elm.selectedIndex].text;  
 
@@ -217,7 +221,6 @@ dd_Chart.on("change", function() {
 
 // Pull data once selections are finalized
 dd_PieComp.on("change", function() {
-  // var chart_area = document.getElementById("pie");
   var chart_area = d3.select("#pie");
   chart_area.html("");
 
