@@ -217,7 +217,8 @@ dd_Chart.on("change", function() {
 
 // Pull data once selections are finalized
 dd_PieComp.on("change", function() {
-  var chart_area = document.getElementById("pie");
+  // var chart_area = document.getElementById("pie");
+  var chart_area = d3.select("#pie");
   chart_area.html("");
 
   var dd_cat_elm = document.getElementById("selIndCat");
@@ -307,7 +308,6 @@ function create_pie_chart(x,y) {
        showlegend: true,
        title: ind_cat_text
      };
-     
      Plotly.newPlot("pie", data_pnt, layout);
   }
 
@@ -342,8 +342,22 @@ function create_pie_chart(x,y) {
   var ind_cat_text = dd_cat_elm.options[dd_cat_elm.selectedIndex].text;
   var dd_ind_elm = document.getElementById("selInd");
   var ind_text = dd_ind_elm.options[dd_ind_elm.selectedIndex].text;
+  var dd_year_elm = document.getElementById("selYear");
+  var year_text = dd_year_elm.options[dd_year_elm.selectedIndex].text;
+  var dd_sex_elm = document.getElementById("selSex");
+  var sex_text = dd_sex_elm.options[dd_sex_elm.selectedIndex].text;
+  var dd_race_elm = document.getElementById("selRaceEth");
+  var race_text = dd_race_elm.options[dd_race_elm.selectedIndex].text;
+  var dd_loc_elm = document.getElementById("selLoc");
+  var loc_text = dd_loc_elm.options[dd_loc_elm.selectedIndex].text;
+  var dd_chart_elm = document.getElementById("selChartType");
+  var ind_chart_text = dd_chart_elm.options[dd_chart_elm.selectedIndex].text;  
   var dd_data_elm = document.getElementById("selPieComp");
-  var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;
+  var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
+
+  if (ind_text == 'All'){
+    ind_text = "Value/Percent"
+  }
 
   var arrayLength = dp.length;
   var counts = {};
@@ -354,7 +368,20 @@ function create_pie_chart(x,y) {
   }
   counter = Object.keys(counts).length;
   amtPerCounter = dp.length / counter;
-  console.log(dp);
+  if (counter > 5) {
+    if(ind_text == 'All') {
+      ind_text = '%%';}
+    if(year_text == 'All') {
+      year_text = '%%';}
+    if(sex_text == 'All') {
+      sex_text = '%%';}
+    if(race_text == 'All') {
+      race_text = '%%';}  
+    if(loc_text == 'All') {
+      loc_text = '%%';}
+    alert("A line chart is not the best type of chart for your data selection.  Please try a bar or pie chart instead.");
+    return;
+  }
   if (counter >= 1) {
     var trace1 = {
       x: y.slice(0,amtPerCounter),
@@ -375,6 +402,7 @@ function create_pie_chart(x,y) {
     var trace3 = {
       x: y.slice(amtPerCounter*2,amtPerCounter*3),
       y: x.slice(amtPerCounter*2,amtPerCounter*3),
+      mode: 'markers',
       type: 'scatter',
       name: dp[amtPerCounter*2]
     };
@@ -421,7 +449,7 @@ function create_pie_chart(x,y) {
   };
 
   Plotly.newPlot('pie', data, layout);
-}
+ }
 
 function create_scatter_chart(x,y,dp) {
   var dd_cat_elm = document.getElementById("selIndCat");
@@ -466,14 +494,6 @@ function create_scatter_chart(x,y,dp) {
     if(loc_text == 'All') {
       loc_text = '%%';}
     alert("A line chart is not the best type of chart for your data selection.  Please try a bar or pie chart instead.");
-    d3.json(`/sel_pie/${ind_cat_text}/${ind_text}/${year_text}/${sex_text}/${race_text}/${loc_text}/${data_text}`).then((data) => {
-      var un_zip = _.unzip(data);
-      var y = un_zip[0];
-      var string_num = un_zip[1];
-      console.log(string_num)
-      var x = string_num.map(v => +v );
-      create_pie_chart(x,y);
-    });
     return;
   }
   if (counter >= 1) {
