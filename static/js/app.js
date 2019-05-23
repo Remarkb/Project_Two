@@ -356,7 +356,7 @@ function create_pie_chart(x,y) {
   var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
 
   if (ind_text == 'All'){
-    ind_text = "Value/Percent"
+    ind_text = "Value/Percent";
   }
 
   var arrayLength = dp.length;
@@ -402,7 +402,6 @@ function create_pie_chart(x,y) {
     var trace3 = {
       x: y.slice(amtPerCounter*2,amtPerCounter*3),
       y: x.slice(amtPerCounter*2,amtPerCounter*3),
-      mode: 'markers',
       type: 'scatter',
       name: dp[amtPerCounter*2]
     };
@@ -470,7 +469,7 @@ function create_scatter_chart(x,y,dp) {
   var data_text = dd_data_elm.options[dd_data_elm.selectedIndex].text;  
 
   if (ind_text == 'All'){
-    ind_text = "Value/Percent"
+    ind_text = "Value/Percent";
   }
 
   var arrayLength = dp.length;
